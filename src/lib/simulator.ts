@@ -1,19 +1,31 @@
 import { Appliance, EnergySourceConfig, HourlyData, SimulationConfig, SimulationResult } from "@/types/simulator";
 
 // Energy prices per hour (€/kWh) - simplified dynamic pricing
+// const ENERGY_PRICES = [
+//   0.25, 0.23, 0.22, 0.21, 0.20, 0.22, // 0-5: Night (cheap)
+//   0.30, 0.35, 0.38, 0.32, 0.28, 0.25, // 6-11: Morning peak
+//   0.24, 0.23, 0.22, 0.24, 0.26, 0.35, // 12-17: Afternoon
+//   0.40, 0.38, 0.35, 0.32, 0.28, 0.26, // 18-23: Evening peak
+// ];
 const ENERGY_PRICES = [
-  0.25, 0.23, 0.22, 0.21, 0.20, 0.22, // 0-5: Night (cheap)
-  0.30, 0.35, 0.38, 0.32, 0.28, 0.25, // 6-11: Morning peak
-  0.24, 0.23, 0.22, 0.24, 0.26, 0.35, // 12-17: Afternoon
-  0.40, 0.38, 0.35, 0.32, 0.28, 0.26, // 18-23: Evening peak
+ 0.19, 0.18, 0.17, 0.16, 0.15, 0.17,
+  0.22, 0.27, 0.30, 0.28, 0.25, 0.23,
+  0.21, 0.20, 0.19, 0.22, 0.24, 0.28,
+  0.33, 0.31, 0.29, 0.27, 0.25, 0.24
 ];
 
 // CO2 intensity per hour (kg CO₂/kWh) - grid intensity varies
+// const CO2_INTENSITY = [
+//   0.35, 0.33, 0.32, 0.30, 0.28, 0.30, // 0-5: Night (coal/gas)
+//   0.38, 0.42, 0.40, 0.35, 0.28, 0.22, // 6-11: Morning (increasing renewables)
+//   0.18, 0.15, 0.16, 0.20, 0.25, 0.35, // 12-17: Afternoon (peak solar)
+//   0.42, 0.40, 0.38, 0.37, 0.36, 0.35, // 18-23: Evening (less renewables)
+// ];
 const CO2_INTENSITY = [
-  0.35, 0.33, 0.32, 0.30, 0.28, 0.30, // 0-5: Night (coal/gas)
-  0.38, 0.42, 0.40, 0.35, 0.28, 0.22, // 6-11: Morning (increasing renewables)
-  0.18, 0.15, 0.16, 0.20, 0.25, 0.35, // 12-17: Afternoon (peak solar)
-  0.42, 0.40, 0.38, 0.37, 0.36, 0.35, // 18-23: Evening (less renewables)
+  0.36, 0.35, 0.34, 0.33, 0.32, 0.34,
+  0.38, 0.42, 0.39, 0.36, 0.30, 0.26,
+  0.22, 0.20, 0.21, 0.24, 0.28, 0.31,
+  0.35, 0.34, 0.33, 0.32, 0.31, 0.30
 ];
 
 // Generation patterns (percentage of peak capacity)
@@ -201,6 +213,7 @@ export function optimizeSchedule(config: SimulationConfig, appliances: Appliance
       
       // Run simulation with this configuration
       const result = runSimulation(config, tempAppliances);
+      // const currentScore = result.totalCost;
       const currentScore = result.totalCost * 1.5 + result.totalCO2 * 1.0;
       
       // If this is better than our best score, update
