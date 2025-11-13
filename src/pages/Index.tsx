@@ -132,7 +132,7 @@ const Index = () => {
         <footer className="mt-12 border-t pt-6 text-center text-sm text-muted-foreground">
           <p>SmartGrid Simulator - Slim & Groen Project</p>
           <p className="mt-1">
-            Ontwikkeld door Malik Omri, Mylo van Loenen & Gabriel Kalkhuis
+            Ontwikkeld door Malik Omri, Mylo van Loenen, Quiten von Epstein Does, Luke Hoogeboom & Amina Alhaji
           </p>
         </footer>
       </div>
