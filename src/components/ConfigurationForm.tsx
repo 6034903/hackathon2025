@@ -249,18 +249,6 @@ export function ConfigurationForm({ onSimulate }: ConfigurationFormProps) {
                       />
                     </div>
                     <div className="flex items-end justify-between gap-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`flex-${appliance.id}`}
-                          checked={appliance.flexible}
-                          onCheckedChange={(checked) =>
-                            updateAppliance(appliance.id, { flexible: checked as boolean })
-                          }
-                        />
-                        <Label htmlFor={`flex-${appliance.id}`} className="text-xs">
-                          Flexibel
-                        </Label>
-                      </div>
                       <Button
                         onClick={() => removeAppliance(appliance.id)}
                         size="sm"
