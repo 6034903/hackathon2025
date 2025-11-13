@@ -41,14 +41,14 @@ export function EnergyChart({ results }: EnergyChartProps) {
   }));
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 w-full">
       <Card>
         <CardHeader>
-          <CardTitle>Energiestromen - Normaal Scenario</CardTitle>
-          <CardDescription>Opwekking, verbruik en batterijniveau over 24 uur</CardDescription>
+          <CardTitle className="text-lg">Energiestromen - Normaal Scenario</CardTitle>
+          <CardDescription className="text-sm">Opwekking, verbruik en batterijniveau over 24 uur</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="text-xs">
             <LineChart data={normalData}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
               <XAxis
@@ -97,11 +97,11 @@ export function EnergyChart({ results }: EnergyChartProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Energiestromen - Geoptimaliseerd Scenario</CardTitle>
-          <CardDescription>Slim geplande apparaten voor lagere kosten en uitstoot</CardDescription>
+          <CardTitle className="text-lg">Energiestromen - Geoptimaliseerd Scenario</CardTitle>
+          <CardDescription className="text-sm">Opwekking, verbruik en batterijniveau na optimalisatie</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="text-xs">
             <LineChart data={optimizedData}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
               <XAxis
@@ -150,11 +150,11 @@ export function EnergyChart({ results }: EnergyChartProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Kostenvergelijking per Uur</CardTitle>
-          <CardDescription>Besparing door slimme planning zichtbaar gemaakt</CardDescription>
+          <CardTitle className="text-lg">Kostenvergelijking</CardTitle>
+          <CardDescription className="text-sm">Vergelijking van de kosten tussen normaal en geoptimaliseerd scenario</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="text-xs">
             <BarChart data={costComparisonData}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
               <XAxis

@@ -52,8 +52,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-background to-primary/5">
+      <div className="w-full max-w-[1700px] mx-auto px-4 py-8 flex-1">
         <header className="mb-8 text-center">
           <div className="mb-4 flex items-center justify-center gap-3">
             <Zap className="h-10 w-10 text-primary" />
@@ -64,17 +64,17 @@ const Index = () => {
           </p>
         </header>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="w-full lg:w-1/2 bg-card p-6 rounded-lg border shadow-sm">
+        <div className="flex flex-col xl:flex-row gap-8">
+          <div className="w-full xl:w-[60%] 2xl:w-[55%] bg-card p-6 rounded-lg border shadow-sm">
             <h2 className="text-xl font-semibold mb-4">Configuratie</h2>
             <ConfigurationForm onSimulate={handleSimulate} />
           </div>
           
-          <div className="w-full lg:w-2/3 flex flex-col h-[calc(130vh-50px)]">
+          <div className="w-full xl:w-[40%] 2xl:w-[45%] flex flex-col h-[calc(130vh-50px)]">
             {results ? (
               <div className="flex flex-col h-full">
-                <div className="flex-1 overflow-y-auto pr-2 -mr-2">
-                  <div className="space-y-8 pr-2">
+                <div className="flex-1 overflow-y-auto pr-2">
+                  <div className="space-y-6 pr-2">
                     {/* Savings Dashboard */}
                     <div className="bg-card rounded-xl border shadow-sm overflow-hidden">
                       <SavingsDashboard results={results} />
@@ -82,22 +82,16 @@ const Index = () => {
                     
                     {/* Main Results Grid */}
                     <div className="space-y-8">
-                      <div className="grid gap-8 grid-cols-1 xl:grid-cols-2">
-                        {/* Results Summary */}
-                        <div className="bg-card p-6 rounded-xl border shadow-sm">
-                          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Samenvatting</h2>
-                          <ResultsDashboard results={results} />
-                        </div>
-                        
-                        {/* Energy Chart */}
-                        <div className="bg-card p-6 rounded-xl border shadow-sm">
-                          <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-semibold text-gray-800">Energieverbruik</h2>
-                          </div>
-                          <div className="h-[350px] w-full -mx-2">
-                            <EnergyChart results={results} />
-                          </div>
-                        </div>
+                      {/* Energy Section - Contains all energy charts */}
+                      <div className="space-y-6">
+                        <h2 className="text-2xl font-semibold text-gray-800">Energieverbruik</h2>
+                        <EnergyChart results={results} />
+                      </div>
+                      
+                      {/* Results Summary */}
+                      <div className="bg-card p-6 rounded-xl border shadow-sm mt-8">
+                        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Samenvatting</h2>
+                        <ResultsDashboard results={results} />
                       </div>
                       
                       {/* Additional Charts/Info can be added here */}
@@ -129,11 +123,13 @@ const Index = () => {
           </div>
         </div>
 
-        <footer className="mt-12 border-t pt-6 text-center text-sm text-muted-foreground">
-          <p>SmartGrid Simulator - Slim & Groen Project</p>
-          <p className="mt-1">
-            Ontwikkeld door Malik Omri, Mylo van Loenen, Quinten Does, Luke Hoogeboom & Amina Alhaji
-          </p>
+        <footer className="mt-12 border-t pt-6 pb-8 text-center text-sm text-muted-foreground w-full">
+          <div className="max-w-7xl mx-auto px-4">
+            <p>SmartGrid Simulator - Slim & Groen Project</p>
+            <p className="mt-1">
+              Ontwikkeld door Malik Omri, Mylo van Loenen, Quinten Does, Luke Hoogeboom & Amina Alhaji
+            </p>
+          </div>
         </footer>
       </div>
     </div>
